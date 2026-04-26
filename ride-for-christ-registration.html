@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ride for Christ — Rider Registration</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f0eee6;
+    --cream-deep: #e8e4d8;
+    --coral: #cc785c;
+    --coral-deep: #b5654c;
+    --ink: #1f1d1a;
+    --ink-soft: #3d3929;
+    --ink-muted: #6b6558;
+    --rule: #d4cfc0;
+  }
+
+  html, body {
+    background: #2a2825;
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  body {
+    padding: 32px 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-container {
+    width: 100%;
+    max-width: 720px;
+    background: var(--cream);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  }
+
+  /* ===== HEADER ===== */
+  .form-header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 48px 48px 36px;
+    border-bottom: 3px solid var(--coral);
+  }
+
+  .header-rule {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    color: var(--coral);
+    margin-bottom: 28px;
+  }
+  .header-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(204, 120, 92, 0.4);
+  }
+
+  .header-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 60px;
+    line-height: 0.95;
+    color: var(--cream);
+    letter-spacing: -1.5px;
+    margin-bottom: 14px;
+  }
+  .header-title .for {
+    font-style: italic;
+    color: var(--coral);
+    font-size: 38px;
+    padding: 0 6px;
+    font-weight: 400;
+  }
+
+  .header-subtitle {
+    font-size: 13px;
+    color: rgba(240, 238, 230, 0.7);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 28px;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(240, 238, 230, 0.15);
+    padding-top: 22px;
+  }
+  .header-meta > div {
+    font-size: 10px;
+    color: rgba(240, 238, 230, 0.55);
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  .header-meta strong {
+    display: block;
+    color: var(--cream);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin-top: 5px;
+    text-transform: none;
+  }
+
+  /* ===== BODY ===== */
+  .form-body {
+    padding: 48px;
+  }
+
+  .verse {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    border-left: 2px solid var(--coral);
+    padding-left: 20px;
+    margin-bottom: 36px;
+  }
+
+  .intro h2 {
+    font-family: Georgia, serif;
+    font-size: 44px;
+    line-height: 1.05;
+    margin-bottom: 14px;
+    letter-spacing: -1px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .intro h2 em {
+    font-style: italic;
+    color: var(--coral);
+  }
+  .intro p {
+    font-size: 15px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    margin-bottom: 8px;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    border-top: 1px solid var(--rule);
+    padding-top: 36px;
+    margin-top: 40px;
+  }
+  .section.first {
+    border-top: none;
+    padding-top: 40px;
+    margin-top: 32px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .section-num {
+    background: var(--coral);
+    color: var(--cream);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 5px 11px;
+  }
+  .section-title {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    color: var(--ink);
+    line-height: 1;
+    font-weight: 400;
+  }
+
+  /* ===== FIELDS ===== */
+  .field {
+    margin-bottom: 22px;
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .field label .req {
+    color: var(--coral);
+    margin-left: 2px;
+  }
+  .field label .opt {
+    color: var(--ink-muted);
+    font-weight: 500;
+    margin-left: 6px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 11px;
+  }
+
+  .field input[type="text"],
+  .field input[type="tel"],
+  .field input[type="email"],
+  .field select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1.5px solid var(--rule);
+    background: #fafaf6;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    border-radius: 0;
+    transition: border-color 0.18s, background 0.18s;
+  }
+  .field input:focus,
+  .field select:focus {
+    outline: none;
+    border-color: var(--coral);
+    background: white;
+  }
+  .field input::placeholder {
+    color: #b5b0a0;
+  }
+  .field-hint {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 8px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* ===== RADIO GROUPS ===== */
+  .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .radio-option {
+    flex: 1 1 100px;
+  }
+  .radio-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .radio-option label {
+    display: block;
+    text-align: center;
+    padding: 11px 14px;
+    border: 1.5px solid var(--rule);
+    background: #fafaf6;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.18s;
+    margin-bottom: 0;
+    text-transform: none;
+  }
+  .radio-option input[type="radio"]:checked + label {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .radio-option label:hover {
+    border-color: var(--coral);
+  }
+  .radio-option input[type="radio"]:focus-visible + label {
+    box-shadow: 0 0 0 2px var(--coral);
+  }
+
+  /* ===== CHECKBOXES ===== */
+  .checkbox-group {
+    margin-top: 8px;
+  }
+  .checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+  }
+  .checkbox-item:last-child {
+    border-bottom: none;
+  }
+  .checkbox-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--rule);
+    background: white;
+    margin-top: 1px;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.18s;
+  }
+  .checkbox-item input[type="checkbox"]:checked {
+    background: var(--coral);
+    border-color: var(--coral);
+  }
+  .checkbox-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: var(--cream);
+    font-size: 14px;
+    font-weight: 700;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+  }
+  .checkbox-item input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 2px;
+  }
+  .checkbox-item .checkbox-text {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    user-select: none;
+  }
+  .checkbox-item .checkbox-text strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .checkbox-item .checkbox-text .req {
+    color: var(--coral);
+    font-weight: 700;
+  }
+
+  /* ===== CONDITIONAL ===== */
+  .conditional {
+    margin-top: 18px;
+    padding-left: 20px;
+    border-left: 2px solid var(--coral);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    opacity: 0;
+  }
+  .conditional.show {
+    max-height: 200px;
+    opacity: 1;
+  }
+
+  /* ===== SUBMIT ===== */
+  .submit-area {
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1px solid var(--rule);
+  }
+  .submit-btn {
+    width: 100%;
+    padding: 20px 32px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+  .submit-btn:hover {
+    background: var(--coral);
+  }
+  .submit-btn .arrow {
+    transition: transform 0.2s;
+    font-size: 16px;
+  }
+  .submit-btn:hover .arrow {
+    transform: translateX(6px);
+  }
+  .submit-disclaimer {
+    font-size: 12px;
+    color: var(--ink-muted);
+    text-align: center;
+    margin-top: 18px;
+    line-height: 1.5;
+  }
+
+  /* ===== FOOTER ===== */
+  .form-footer {
+    background: var(--cream-deep);
+    padding: 22px 48px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: 1.5px;
+  }
+
+  /* ===== HIDE / SHOW STATES ===== */
+  #formActive.hidden { display: none; }
+  #successState { display: none; }
+  #successState.active { display: block; }
+
+  /* ===== SUCCESS STATE ===== */
+  .success-header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 60px 48px 48px;
+    text-align: center;
+    border-bottom: 3px solid var(--coral);
+  }
+  .success-checkmark {
+    width: 68px;
+    height: 68px;
+    border: 2px solid var(--coral);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--coral);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 28px;
+  }
+  .success-header h2 {
+    font-family: Georgia, serif;
+    font-size: 56px;
+    color: var(--cream);
+    line-height: 1;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .success-header h2 em {
+    font-style: italic;
+    color: var(--coral);
+  }
+  .success-header p {
+    font-size: 13px;
+    color: rgba(240,238,230,0.7);
+    letter-spacing: 3px;
+    font-weight: 600;
+  }
+
+  .success-body {
+    padding: 48px;
+  }
+  .success-section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--coral);
+    font-weight: 700;
+    margin-bottom: 16px;
+    margin-top: 36px;
+  }
+  .success-section-label:first-child {
+    margin-top: 0;
+  }
+
+  .event-summary {
+    background: var(--cream-deep);
+    padding: 24px 28px;
+    margin-bottom: 24px;
+  }
+  .event-summary dl {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 14px 20px;
+  }
+  .event-summary dt {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--coral);
+    align-self: center;
+  }
+  .event-summary dd {
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .next-steps {
+    list-style: none;
+  }
+  .next-steps li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .next-steps li:last-child {
+    border-bottom: none;
+  }
+  .next-steps .marker {
+    font-family: Georgia, serif;
+    color: var(--coral);
+    font-size: 20px;
+    line-height: 1;
+    margin-top: 2px;
+    min-width: 24px;
+  }
+  .next-steps .step-content strong {
+    color: var(--ink);
+    display: block;
+    margin-bottom: 3px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .next-steps .step-content {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+
+  .closing-verse {
+    font-family: Georgia, serif;
+    font-style: italic;
+    text-align: center;
+    color: var(--ink-soft);
+    margin-top: 40px;
+    padding: 32px 24px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .closing-verse cite {
+    display: block;
+    margin-top: 12px;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--coral);
+    font-weight: 700;
+  }
+
+  .register-another {
+    margin-top: 32px;
+    text-align: center;
+  }
+  .register-another button {
+    background: none;
+    border: none;
+    color: var(--ink-muted);
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .register-another button:hover {
+    color: var(--coral);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    body { padding: 0; }
+    .form-header, .form-body, .success-header, .success-body { padding: 36px 24px; }
+    .form-footer { padding: 20px 24px; }
+    .header-title { font-size: 44px; }
+    .header-title .for { font-size: 30px; }
+    .header-meta { gap: 18px; }
+    .field-row { grid-template-columns: 1fr; }
+    .intro h2 { font-size: 32px; }
+    .success-header h2 { font-size: 40px; }
+    .event-summary dl { grid-template-columns: 1fr; gap: 4px; }
+    .event-summary dt { margin-top: 14px; }
+    .event-summary dt:first-of-type { margin-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- ===== FORM ===== -->
+  <div id="formActive">
+
+    <header class="form-header">
+      <div class="header-rule">RIDER REGISTRATION</div>
+      <h1 class="header-title">RIDE<span class="for">for</span>CHRIST.</h1>
+      <div class="header-subtitle">Ride with Purpose · Ride for Christ</div>
+      <div class="header-meta">
+        <div>WHEN<strong>May 1, 2026 · 5 AM</strong></div>
+        <div>WHERE<strong>Caltex Southwoods → Kaybiang</strong></div>
+        <div>FORMAT<strong>Breakfast Ride</strong></div>
+      </div>
+    </header>
+
+    <main class="form-body">
+
+      <div class="verse">
+        "As iron sharpens iron, so one man sharpens another."<br>— Proverbs 27:17
+      </div>
+
+      <div class="intro">
+        <h2>Lock me <em>in</em>.</h2>
+        <p>Fill this out and we'll see you at sunrise. Bring a brother — believer or not. The road, the breakfast, and the Word are on us.</p>
+      </div>
+
+      <form id="registrationForm" novalidate>
+
+        <!-- 01 RIDER -->
+        <section class="section first">
+          <div class="section-header">
+            <div class="section-num">01</div>
+            <div class="section-title">Rider</div>
+          </div>
+
+          <div class="field">
+            <label>Full Name<span class="req">*</span></label>
+            <input type="text" name="fullName" autocomplete="name" required placeholder="Juan Dela Cruz">
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Mobile<span class="req">*</span></label>
+              <input type="tel" name="mobile" autocomplete="tel" required placeholder="+63 9XX XXX XXXX">
+            </div>
+            <div class="field">
+              <label>Email<span class="opt">optional</span></label>
+              <input type="email" name="email" autocomplete="email" placeholder="you@example.com">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Emergency Contact Name<span class="req">*</span></label>
+              <input type="text" name="emergencyName" required placeholder="Name">
+            </div>
+            <div class="field">
+              <label>Emergency Number<span class="req">*</span></label>
+              <input type="tel" name="emergencyNumber" required placeholder="+63 9XX XXX XXXX">
+            </div>
+          </div>
+        </section>
+
+        <!-- 02 MOTORCYCLE -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-num">02</div>
+            <div class="section-title">Motorcycle</div>
+          </div>
+
+          <div class="field">
+            <label>Make &amp; Model<span class="req">*</span></label>
+            <input type="text" name="bike" required placeholder="Honda Click 150i">
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Engine Size<span class="req">*</span></label>
+              <select name="cc" required>
+                <option value="">Select…</option>
+                <option value="under-125">Under 125cc</option>
+                <option value="125-150">125–150cc</option>
+                <option value="155-250">155–250cc</option>
+                <option value="251-400">251–400cc</option>
+                <option value="400-plus">400cc+</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Plate Number<span class="req">*</span></label>
+              <input type="text" name="plate" required placeholder="ABC 1234" style="text-transform: uppercase;">
+            </div>
+          </div>
+
+          <p class="field-hint">We're taking national roads (no tollway), so all displacements are welcome.</p>
+        </section>
+
+        <!-- 03 ON THE ROAD -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-num">03</div>
+            <div class="section-title">On the road</div>
+          </div>
+
+          <div class="field">
+            <label>How long have you been riding?</label>
+            <div class="radio-group">
+              <div class="radio-option"><input type="radio" id="exp1" name="experience" value="<1"><label for="exp1">&lt;1 yr</label></div>
+              <div class="radio-option"><input type="radio" id="exp2" name="experience" value="1-3"><label for="exp2">1–3 yrs</label></div>
+              <div class="radio-option"><input type="radio" id="exp3" name="experience" value="3-5"><label for="exp3">3–5 yrs</label></div>
+              <div class="radio-option"><input type="radio" id="exp4" name="experience" value="5+"><label for="exp4">5+ yrs</label></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Church or riding group<span class="opt">optional</span></label>
+            <input type="text" name="church" placeholder="e.g., Quest Laguna, Saddle Brothers MC">
+          </div>
+
+          <div class="field" style="margin-bottom: 0;">
+            <label>First time joining a Ride for Christ?</label>
+            <div class="radio-group">
+              <div class="radio-option"><input type="radio" id="first1" name="firstTime" value="yes"><label for="first1">Yes</label></div>
+              <div class="radio-option"><input type="radio" id="first2" name="firstTime" value="no"><label for="first2">No, joined before</label></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 BRING A BROTHER -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-num">04</div>
+            <div class="section-title">Bring a brother</div>
+          </div>
+
+          <div class="field" style="margin-bottom: 0;">
+            <label>Are you bringing someone?</label>
+            <div class="radio-group">
+              <div class="radio-option"><input type="radio" id="buddy1" name="bringBuddy" value="yes"><label for="buddy1">Yes</label></div>
+              <div class="radio-option"><input type="radio" id="buddy2" name="bringBuddy" value="no"><label for="buddy2">Not this time</label></div>
+              <div class="radio-option"><input type="radio" id="buddy3" name="bringBuddy" value="maybe"><label for="buddy3">Still inviting</label></div>
+            </div>
+
+            <div class="conditional" id="buddyDetails">
+              <div class="field" style="margin-bottom: 0;">
+                <label>Buddy's name<span class="opt">so we can pair you up</span></label>
+                <input type="text" name="buddyName" placeholder="Full name">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 05 BEFORE WE RIDE -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-num">05</div>
+            <div class="section-title">Before we ride</div>
+          </div>
+
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" name="confirmGas" required>
+              <span class="checkbox-text">I'll arrive at <strong>Caltex Southwoods by 4:30 AM</strong> and stay for the full ride — <strong>departing Kaybiang at 8 AM, back home by 10 AM</strong>.<span class="req"> *</span></span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="confirmGear" required>
+              <span class="checkbox-text">I have proper riding gear: <strong>helmet, jacket, gloves, and closed shoes</strong>.<span class="req"> *</span></span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="confirmDocs" required>
+              <span class="checkbox-text">I have a valid <strong>driver's license and OR/CR</strong>.<span class="req"> *</span></span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="consentMedia">
+              <span class="checkbox-text">I consent to photos and videos being taken during the event for ministry use.</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="optInUpdates">
+              <span class="checkbox-text">Keep me posted about future Ride for Christ events.</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- SUBMIT -->
+        <div class="submit-area">
+          <button type="submit" class="submit-btn">
+            Sign me up <span class="arrow">→</span>
+          </button>
+          <p class="submit-disclaimer">By submitting, you agree to ride safely, respect the convoy, and represent the Lord on the road.</p>
+        </div>
+
+      </form>
+    </main>
+
+    <footer class="form-footer">
+      QUESTIONS? REACH THE COORDINATOR ON THE GROUP CHAT
+    </footer>
+
+  </div>
+
+  <!-- ===== SUCCESS STATE ===== -->
+  <div id="successState">
+
+    <div class="success-header">
+      <div class="success-checkmark">✓</div>
+      <h2>You're <em>in</em>.</h2>
+      <p>SEE YOU AT SUNRISE, <span id="successName">BROTHER</span>.</p>
+    </div>
+
+    <div class="success-body">
+
+      <div class="success-section-label">EVENT DETAILS</div>
+      <div class="event-summary">
+        <dl>
+          <dt>DATE</dt>
+          <dd>May 1, 2026 · Labor Day (Friday)</dd>
+          <dt>CALL TIME</dt>
+          <dd>4:30 AM (gas, briefing, prayer)</dd>
+          <dt>KICKOFF</dt>
+          <dd>5:00 AM</dd>
+          <dt>MEETUP</dt>
+          <dd>Caltex Southwoods</dd>
+          <dt>DESTINATION</dt>
+          <dd>Kaybiang Tunnel, Ternate, Cavite</dd>
+          <dt>RIDE HOME</dt>
+          <dd>8:00 AM (depart Kaybiang)</dd>
+          <dt>BACK BY</dt>
+          <dd>10:00 AM</dd>
+        </dl>
+      </div>
+
+      <div class="success-section-label">WHAT'S NEXT</div>
+      <ul class="next-steps">
+        <li>
+          <span class="marker">I.</span>
+          <div class="step-content">
+            <strong>Save the date</strong>
+            Block off May 1 (Labor Day). Set an alarm for 4:00 AM.
+          </div>
+        </li>
+        <li>
+          <span class="marker">II.</span>
+          <div class="step-content">
+            <strong>Join the group chat</strong>
+            We'll send route maps, weather updates, and last-minute coordination.
+          </div>
+        </li>
+        <li>
+          <span class="marker">III.</span>
+          <div class="step-content">
+            <strong>Bring a brother</strong>
+            Pick one rider you've been praying for and personally invite them.
+          </div>
+        </li>
+        <li>
+          <span class="marker">IV.</span>
+          <div class="step-content">
+            <strong>Check your gear the night before</strong>
+            Helmet, jacket, gloves, closed shoes. License and OR/CR in your tank bag.
+          </div>
+        </li>
+      </ul>
+
+      <div class="closing-verse">
+        "As iron sharpens iron, so one man sharpens another."
+        <cite>PROVERBS 27:17</cite>
+      </div>
+
+      <div class="register-another">
+        <button onclick="resetForm()">Register another rider →</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Conditional buddy name field
+  document.querySelectorAll('input[name="bringBuddy"]').forEach(input => {
+    input.addEventListener('change', function() {
+      const show = this.value === 'yes';
+      const buddyDiv = document.getElementById('buddyDetails');
+      buddyDiv.classList.toggle('show', show);
+      if (!show) {
+        const buddyInput = buddyDiv.querySelector('input');
+        if (buddyInput) buddyInput.value = '';
+      }
+    });
+  });
+
+  // Form submission
+  document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Native validation
+    if (!this.checkValidity()) {
+      this.reportValidity();
+      return;
+    }
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+
+    // In production: POST to your backend here
+    // fetch('/api/register', { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' } })
+    console.log('Registration data:', data);
+
+    // Personalize success message with first name
+    const firstName = (data.fullName || 'BROTHER').trim().split(/\s+/)[0].toUpperCase();
+    document.getElementById('successName').textContent = firstName;
+
+    // Swap views
+    document.getElementById('formActive').classList.add('hidden');
+    document.getElementById('successState').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  function resetForm() {
+    document.getElementById('registrationForm').reset();
+    document.getElementById('buddyDetails').classList.remove('show');
+    document.getElementById('successState').classList.remove('active');
+    document.getElementById('formActive').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>

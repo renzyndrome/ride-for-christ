@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ride for Christ — Event Brief</title>
+<style>
+  @page {
+    size: letter landscape;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f0eee6;
+    --cream-deep: #e8e4d8;
+    --coral: #cc785c;
+    --coral-deep: #b5654c;
+    --ink: #1f1d1a;
+    --ink-soft: #3d3929;
+    --ink-muted: #6b6558;
+    --rule: #d4cfc0;
+  }
+
+  html, body {
+    background: #2a2825;
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .deck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 0;
+  }
+
+  .slide {
+    width: 11in;
+    height: 8.5in;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slide:last-child { page-break-after: auto; }
+
+  /* Shared elements */
+  .slide-num {
+    position: absolute;
+    bottom: 0.45in;
+    right: 0.6in;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  .slide-tag {
+    position: absolute;
+    top: 0.5in;
+    left: 0.6in;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--coral);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .footer-mark {
+    position: absolute;
+    bottom: 0.45in;
+    left: 0.6in;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  h1, h2, h3 { font-family: 'Georgia', 'Times New Roman', serif; font-weight: 400; color: var(--ink); }
+
+  /* ============ SLIDE 1: COVER ============ */
+  .cover {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.8in 0.9in;
+    justify-content: space-between;
+  }
+
+  .cover .top-rule {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--coral);
+    font-weight: 600;
+  }
+
+  .cover .top-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--coral);
+    margin-left: 24px;
+    opacity: 0.4;
+  }
+
+  .cover-title {
+    font-size: 130px;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .cover-title .for {
+    font-style: italic;
+    color: var(--coral);
+    font-size: 80px;
+    display: inline-block;
+    padding: 0 12px;
+  }
+
+  .cover-sub {
+    font-size: 22px;
+    color: var(--cream);
+    opacity: 0.75;
+    margin-top: 24px;
+    letter-spacing: 4px;
+    font-weight: 300;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(240,238,230,0.2);
+    padding-top: 24px;
+  }
+
+  .cover-bottom .meta {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--cream);
+    opacity: 0.6;
+    font-weight: 500;
+  }
+
+  .cover-bottom .meta strong {
+    display: block;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--cream);
+    opacity: 1;
+    margin-top: 6px;
+    font-weight: 600;
+  }
+
+  /* ============ SLIDE 2: VISION ============ */
+  .vision {
+    padding: 0.9in 0.9in;
+    justify-content: center;
+  }
+
+  .vision h1 {
+    font-size: 64px;
+    line-height: 1.05;
+    margin-bottom: 32px;
+    max-width: 9in;
+  }
+
+  .vision h1 em { color: var(--coral); font-style: italic; }
+
+  .vision .lead {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 7in;
+    margin-bottom: 32px;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: auto;
+  }
+
+  .pillar {
+    border-top: 2px solid var(--coral);
+    padding-top: 16px;
+  }
+
+  .pillar .num {
+    font-size: 11px;
+    color: var(--coral);
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .pillar h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .pillar p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+
+  /* ============ SLIDE 3: AUDIENCE ============ */
+  .audience {
+    padding: 0.9in 0.9in;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7in;
+    align-items: center;
+  }
+
+  .audience-left h1 {
+    font-size: 56px;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+
+  .audience-left p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  .audience-list {
+    list-style: none;
+  }
+
+  .audience-list li {
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .audience-list li:first-child { border-top: 1px solid var(--rule); }
+
+  .audience-list .marker {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: var(--coral);
+    line-height: 1;
+    min-width: 40px;
+  }
+
+  .audience-list .label {
+    font-size: 16px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .audience-list .desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* ============ SLIDE 4: ROUTE ============ */
+  .route {
+    padding: 0.8in 0.9in;
+  }
+
+  .route-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 24px;
+  }
+
+  .route-header h1 {
+    font-size: 56px;
+    line-height: 1;
+  }
+
+  .route-header .badge {
+    background: var(--coral);
+    color: var(--cream);
+    padding: 8px 16px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+
+  .route-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 0.6in;
+  }
+
+  .route-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .stat .label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--coral);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .stat .value {
+    font-family: Georgia, serif;
+    font-size: 36px;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat .unit { font-size: 14px; color: var(--ink-muted); margin-left: 4px; }
+
+  .route-why h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--coral);
+  }
+
+  .route-why p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+
+  .route-map {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 28px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .route-map h4 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--coral);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .map-stops {
+    list-style: none;
+  }
+
+  .map-stops li {
+    display: flex;
+    gap: 14px;
+    padding: 10px 0;
+    font-size: 13px;
+  }
+
+  .map-stops .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--coral);
+    margin-top: 5px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .map-stops li:not(:last-child) .dot::after {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 4px;
+    width: 2px;
+    height: 22px;
+    background: rgba(204,120,92,0.4);
+  }
+
+  .map-stops .place {
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 2px;
+  }
+
+  .map-stops .detail { color: rgba(240,238,230,0.6); font-size: 11px; }
+
+  /* ============ SLIDE 5: SCHEDULE ============ */
+  .schedule { padding: 0.8in 0.9in; }
+
+  .schedule h1 {
+    font-size: 56px;
+    margin-bottom: 8px;
+  }
+
+  .schedule .subtitle {
+    font-size: 14px;
+    color: var(--ink-muted);
+    margin-bottom: 32px;
+    letter-spacing: 1px;
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: 1.2fr 5fr;
+    gap: 0;
+  }
+
+  .timeline-row {
+    display: contents;
+  }
+
+  .timeline-time {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: var(--coral);
+    padding: 18px 24px 18px 0;
+    border-right: 2px solid var(--coral);
+    border-bottom: 1px solid var(--rule);
+    text-align: right;
+  }
+
+  .timeline-content {
+    padding: 18px 0 18px 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .timeline-content:last-of-type, .timeline-time:last-of-type {
+    border-bottom: none;
+  }
+
+  .timeline-content h4 {
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 4px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .timeline-content p {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* ============ SLIDE 6: ROLES ============ */
+  .roles { padding: 0.9in 0.9in; }
+
+  .roles h1 { font-size: 56px; margin-bottom: 12px; }
+  .roles .lead {
+    font-size: 16px;
+    color: var(--ink-muted);
+    max-width: 7in;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .role {
+    background: var(--cream-deep);
+    padding: 24px;
+    border-left: 3px solid var(--coral);
+  }
+
+  .role-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--coral);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .role-name {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+
+  .role-desc {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* ============ SLIDE 7: GEAR / SAFETY ============ */
+  .gear { padding: 0.9in 0.9in; display: grid; grid-template-columns: 1fr 1fr; gap: 0.7in; }
+
+  .gear-col h1 {
+    font-size: 48px;
+    margin-bottom: 24px;
+    line-height: 1.05;
+  }
+
+  .gear-col h1 em { color: var(--coral); font-style: italic; }
+
+  .gear-list { list-style: none; }
+  .gear-list li {
+    padding: 12px 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .gear-list .check {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--coral);
+    flex-shrink: 0;
+  }
+
+  .safety-callout {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 24px;
+    margin-top: 24px;
+  }
+
+  .safety-callout h4 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--coral);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .safety-callout p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(240,238,230,0.85);
+  }
+
+  /* ============ SLIDE 8: BRAND ============ */
+  .brand { padding: 0.8in 0.9in; }
+
+  .brand h1 { font-size: 56px; margin-bottom: 32px; }
+
+  .brand-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 0.5in;
+  }
+
+  .brand-block {
+    margin-bottom: 24px;
+  }
+
+  .brand-block .label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--coral);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .brand-block .tagline-display {
+    font-family: Georgia, serif;
+    font-size: 36px;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .brand-block .verse {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .palette {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .swatch {
+    flex: 1;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .logo-mark {
+    background: var(--ink);
+    color: var(--cream);
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .logo-mark .arch-top {
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    color: var(--coral);
+    margin-bottom: 16px;
+  }
+
+  .logo-mark .mono {
+    font-family: Georgia, serif;
+    font-size: 96px;
+    line-height: 1;
+    color: var(--cream);
+  }
+
+  .logo-mark .mono .slash {
+    color: var(--coral);
+  }
+
+  .logo-mark .arch-bottom {
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: rgba(240,238,230,0.7);
+    margin-top: 16px;
+  }
+
+  /* ============ SLIDE 9: CAPTION ============ */
+  .caption-slide { padding: 0.9in 0.9in; }
+  .caption-slide h1 { font-size: 56px; margin-bottom: 8px; }
+  .caption-slide .sub { font-size: 14px; color: var(--ink-muted); letter-spacing: 1px; margin-bottom: 28px; }
+
+  .caption-card {
+    background: var(--cream-deep);
+    padding: 32px;
+    border-left: 3px solid var(--coral);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .caption-card .heading {
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .caption-card p { margin-bottom: 12px; }
+
+  .caption-card .verse {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: var(--ink);
+    border-left: 2px solid var(--coral);
+    padding-left: 14px;
+    margin: 16px 0;
+  }
+
+  .caption-card .hashtags {
+    color: var(--coral);
+    font-weight: 600;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  /* ============ SLIDE 10: CTA ============ */
+  .cta {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.9in;
+    justify-content: space-between;
+  }
+
+  .cta .small-mark {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--coral);
+    font-weight: 700;
+  }
+
+  .cta-main h1 {
+    font-size: 110px;
+    line-height: 0.95;
+    color: var(--cream);
+    letter-spacing: -2px;
+    font-weight: 400;
+  }
+
+  .cta-main h1 em {
+    font-style: italic;
+    color: var(--coral);
+  }
+
+  .cta-main p {
+    font-size: 18px;
+    color: rgba(240,238,230,0.75);
+    max-width: 7in;
+    margin-top: 24px;
+    line-height: 1.6;
+  }
+
+  .cta-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    border-top: 1px solid rgba(240,238,230,0.2);
+    padding-top: 28px;
+  }
+
+  .cta-info .label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--coral);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .cta-info .value {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    color: var(--cream);
+    line-height: 1.1;
+  }
+
+  @media screen {
+    /* Scroll-snap presentation mode */
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+    .deck {
+      padding: 5vh 0;
+      gap: 5vh;
+    }
+    .slide {
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+
+    /* Slide counter overlay (top-right) */
+    .slide-counter {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(31, 29, 26, 0.92);
+      color: #f0eee6;
+      padding: 10px 18px;
+      border-radius: 24px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      z-index: 100;
+      border: 1px solid rgba(204, 120, 92, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .slide-counter .current { color: #cc785c; font-weight: 700; }
+    .slide-counter .sep { opacity: 0.4; margin: 0 4px; }
+
+    /* Nav arrows (bottom-right) */
+    .slide-nav {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 100;
+    }
+    .slide-nav button {
+      background: rgba(31, 29, 26, 0.92);
+      color: #f0eee6;
+      border: 1px solid rgba(204, 120, 92, 0.35);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.18s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .slide-nav button:hover:not(:disabled) {
+      background: #cc785c;
+      color: #1f1d1a;
+      border-color: #cc785c;
+      transform: translateY(-1px);
+    }
+    .slide-nav button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    /* First-time scroll hint */
+    .scroll-hint {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #f0eee6;
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      z-index: 100;
+      pointer-events: none;
+      background: rgba(31, 29, 26, 0.85);
+      padding: 8px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(204, 120, 92, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      animation: hintFade 7s ease-out forwards;
+    }
+    @keyframes hintFade {
+      0%, 70% { opacity: 1; transform: translate(-50%, 0); }
+      100% { opacity: 0; transform: translate(-50%, -10px); }
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #cc785c, #f4b860);
+      z-index: 101;
+      transition: width 0.25s ease;
+      width: 0%;
+    }
+  }
+
+  @media print {
+    html, body { background: white; scroll-snap-type: none; }
+    .deck { padding: 0; gap: 0; }
+    .slide { box-shadow: none; scroll-snap-align: none; }
+    .slide-counter, .slide-nav, .scroll-hint, .progress-bar { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- ===== SLIDE 1: COVER ===== -->
+  <section class="slide cover">
+    <div class="top-rule">RIDE BRIEF · 2026</div>
+    <div>
+      <h1 class="cover-title">RIDE<span class="for">for</span><br>CHRIST.</h1>
+      <p class="cover-sub">RIDE WITH PURPOSE · RIDE FOR CHRIST</p>
+    </div>
+    <div class="cover-bottom">
+      <div class="meta">DATE<strong>May 1, 2026 · Labor Day</strong></div>
+      <div class="meta">DESTINATION<strong>Kaybiang Tunnel · Ternate, Cavite</strong></div>
+      <div class="meta">CALL TIME<strong>4:30 AM · Caltex Southwoods</strong></div>
+    </div>
+  </section>
+
+  <!-- ===== SLIDE 2: VISION ===== -->
+  <section class="slide vision">
+    <div class="slide-tag">01 · The Vision</div>
+    <h1>Where iron sharpens iron, the road bears <em>witness</em>.</h1>
+    <p class="lead">We're rolling out before sunrise to share the open road, a hot breakfast, and a quiet moment in the Word. Built for Christian riders, designed to welcome the curious — a fellowship of brothers in Christ, building a humble and intentional riding culture rooted in faith.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="num">PILLAR 01</div>
+        <h3>Brotherhood</h3>
+        <p>Real bonds form on long rides and over breakfast — not in group chats. We ride together, eat together, talk together.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">PILLAR 02</div>
+        <h3>Witness</h3>
+        <p>The lifestyle speaks first. Discipline, respect, and joy on the road — followed by a short, honest sharing of the Word.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">PILLAR 03</div>
+        <h3>Adventure</h3>
+        <p>Sunrise over the Cavite coast. A tunnel through the mountain. The kind of ride seasoned riders won't want to miss.</p>
+      </div>
+    </div>
+    <div class="footer-mark">RIDE FOR CHRIST</div>
+    <div class="slide-num">02</div>
+  </section>
+
+  <!-- ===== SLIDE 3: AUDIENCE ===== -->
+  <section class="slide audience">
+    <div class="slide-tag">02 · Who's Invited</div>
+    <div class="audience-left">
+      <h1>Built for the rider next door.</h1>
+      <p>This isn't a closed circle. We're inviting believers to bring a brother — someone they've been riding with, working with, or praying for. The atmosphere does the inviting.</p>
+    </div>
+    <ul class="audience-list">
+      <li>
+        <span class="marker">I.</span>
+        <div>
+          <div class="label">Christian riders</div>
+          <div class="desc">Active members of riding ministries, church groups, and individual believers who ride.</div>
+        </div>
+      </li>
+      <li>
+        <span class="marker">II.</span>
+        <div>
+          <div class="label">Curious non-believers</div>
+          <div class="desc">Friends, coworkers, riding buddies who haven't connected with church but are open to the lifestyle.</div>
+        </div>
+      </li>
+      <li>
+        <span class="marker">III.</span>
+        <div>
+          <div class="label">Seasoned riders</div>
+          <div class="desc">Experienced riders looking for a meaningful alternative to typical group rides.</div>
+        </div>
+      </li>
+    </ul>
+    <div class="footer-mark">RIDE FOR CHRIST</div>
+    <div class="slide-num">03</div>
+  </section>
+
+  <!-- ===== SLIDE 4: ROUTE ===== -->
+  <section class="slide route">
+    <div class="slide-tag">03 · The Route</div>
+    <div class="route-header">
+      <h1>Caltex Southwoods<br>→ Kaybiang Tunnel</h1>
+      <div class="badge">RECOMMENDED</div>
+    </div>
+    <div class="route-grid">
+      <div>
+        <div class="route-stats">
+          <div class="stat">
+            <div class="label">DISTANCE</div>
+            <div class="value">~70<span class="unit">km one way</span></div>
+          </div>
+          <div class="stat">
+            <div class="label">RIDE TIME</div>
+            <div class="value">~1.5<span class="unit">hrs at group pace</span></div>
+          </div>
+          <div class="stat">
+            <div class="label">ROUTE</div>
+            <div class="value">National Roads</div>
+          </div>
+          <div class="stat">
+            <div class="label">VIBE</div>
+            <div class="value">Coastal · Scenic</div>
+          </div>
+        </div>
+        <div class="route-why">
+          <h3>Why this over Tagaytay</h3>
+          <p>Tagaytay is a coffee run. Kaybiang is the South Luzon ride seasoned riders show up for — and that's the audience we're trying to reach with the "Ride with Purpose" theme.</p>
+          <p>The early sunrise stretch through Ternate sets a naturally reflective tone that makes the Word-sharing land harder than a fluorescent café ever could.</p>
+        </div>
+      </div>
+      <div class="route-map">
+        <div>
+          <h4>ROUTE STOPS — NO TOLLWAY</h4>
+          <ul class="map-stops">
+            <li><span class="dot"></span><div><div class="place">Caltex Southwoods</div><div class="detail">Call time, gas top-up, briefing, prayer</div></div></li>
+            <li><span class="dot"></span><div><div class="place">Carmona → Dasmariñas</div><div class="detail">Aguinaldo Highway, group formation</div></div></li>
+            <li><span class="dot"></span><div><div class="place">Trece Martires → Naic</div><div class="detail">Optional regroup stop</div></div></li>
+            <li><span class="dot"></span><div><div class="place">Maragondon → Ternate</div><div class="detail">Coastal road, sunrise stretch</div></div></li>
+            <li><span class="dot"></span><div><div class="place">Kaybiang Tunnel</div><div class="detail">Breakfast · Word · Fellowship</div></div></li>
+          </ul>
+        </div>
+        <div style="font-size:10px;letter-spacing:2px;color:rgba(240,238,230,0.5);font-weight:600;border-top:1px solid rgba(240,238,230,0.2);padding-top:12px;">NATIONAL ROADS · UNDERBONE-FRIENDLY · EST. ARRIVAL 6:30 AM</div>
+      </div>
+    </div>
+    <div class="footer-mark">RIDE FOR CHRIST</div>
+    <div class="slide-num">04</div>
+  </section>
+
+  <!-- ===== SLIDE 5: SCHEDULE ===== -->
+  <section class="slide schedule">
+    <div class="slide-tag">04 · The Schedule</div>
+    <h1>From first light to home.</h1>
+    <p class="subtitle">FIVE-HOUR WINDOW · TIGHT BUT INTENTIONAL</p>
+    <div class="timeline">
+      <div class="timeline-time">4:30 AM</div>
+      <div class="timeline-content">
+        <h4>Call Time at Caltex Southwoods</h4>
+        <p>Arrive with enough gas in the tank, registration, opening prayer, route + safety briefing. Lead and sweep riders identified.</p>
+      </div>
+      <div class="timeline-time">5:00 AM</div>
+      <div class="timeline-content">
+        <h4>Kickoff — Roll Out</h4>
+        <p>Convoy departs in formation via national roads (no tollway). First-timer buddies paired with new riders.</p>
+      </div>
+      <div class="timeline-time">7:00 AM</div>
+      <div class="timeline-content">
+        <h4>Arrive Kaybiang</h4>
+        <p>Park, photos at the tunnel, settle in at the breakfast spot.</p>
+      </div>
+      <div class="timeline-time">7:15 AM</div>
+      <div class="timeline-content">
+        <h4>Breakfast & Fellowship</h4>
+        <p>Pre-arranged carinderia or packed breakfast at viewpoint. Coffee. Conversation.</p>
+      </div>
+      <div class="timeline-time">8:00 AM</div>
+      <div class="timeline-content">
+        <h4>The Word — 15 Minutes</h4>
+        <p>Short testimony-style sharing. Honest, conversational. Aimed at the curious, not the converted.</p>
+      </div>
+      <div class="timeline-time">8:30 AM</div>
+      <div class="timeline-content">
+        <h4>Roll Back</h4>
+        <p>Group photo, closing prayer, ride out.</p>
+      </div>
+      <div class="timeline-time">10:30 AM</div>
+      <div class="timeline-content">
+        <h4>Home Safe</h4>
+        <p>Back at Caltex Southwoods. Optional debrief and follow-up coordination.</p>
+      </div>
+    </div>
+    <div class="footer-mark">RIDE FOR CHRIST</div>
+    <div class="slide-num">05</div>
+  </section>
+
+  <!-- ===== SLIDE 6: ROLES ===== -->
+  <section class="slide roles">
+    <div class="slide-tag">05 · Roles</div>
+    <h1>Six people make it work.</h1>
+    <p class="lead">Assign these before the ride. Group safety and the welcoming atmosphere both depend on roles being clear.</p>
+    <div class="roles-grid">
+      <div class="role">
+        <div class="role-title">ROLE 01</div>
+        <div class="role-name">Lead Rider</div>
+        <div class="role-desc">Sets pace, knows the route cold, manages convoy speed and stops.</div>
+      </div>
+      <div class="role">
+        <div class="role-title">ROLE 02</div>
+        <div class="role-name">Sweep Rider</div>
+        <div class="role-desc">Last in formation. Stays with anyone who falls behind. No rider left alone.</div>
+      </div>
+      <div class="role">
+        <div class="role-title">ROLE 03</div>
+        <div class="role-name">First-Timer Buddy</div>
+        <div class="role-desc">Rides alongside new riders or non-believer guests. Where the bonding actually happens.</div>
+      </div>
+      <div class="role">
+        <div class="role-title">ROLE 04</div>
+        <div class="role-name">Breakfast Coordinator</div>
+        <div class="role-desc">Pre-books the venue or packs the breakfast. Ensures food is ready on arrival.</div>
+      </div>
+      <div class="role">
+        <div class="role-title">ROLE 05</div>
+        <div class="role-name">Word Speaker</div>
+        <div class="role-desc">15 minutes max. Testimony format preferred over sermon. Real, not rehearsed.</div>
+      </div>
+      <div class="role">
+        <div class="role-title">ROLE 06</div>
+        <div class="role-name">Documenter</div>
+        <div class="role-desc">Captures photo and video for content and for the next round of invites.</div>
+      </div>
+    </div>
+    <div class="footer-mark">RIDE FOR CHRIST</div>
+    <div class="slide-num">06</div>
+  </section>
+
+  <!-- ===== SLIDE 7: GEAR ===== -->
+  <section class="slide gear">
+    <div class="slide-tag" style="left:0.6in">06 · Gear & Safety</div>
+    <div class="gear-col">
+      <h1>What every rider <em>brings</em>.</h1>
+      <ul class="gear-list">
+        <li><span class="check"></span>Full-face or modular helmet (DOT / ECE)</li>
+        <li><span class="check"></span>Riding jacket with armor</li>
+        <li><span class="check"></span>Riding gloves</li>
+        <li><span class="check"></span>Closed shoes — no slippers, no sandals</li>
+        <li><span class="check"></span>OR/CR + driver's license</li>
+        <li><span class="check"></span>Enough gas to reach the next station</li>
+        <li><span class="check"></span>Cash for breakfast + emergency</li>
+        <li><span class="check"></span>Water bottle</li>
+      </ul>
+    </div>
+    <div class="gear-col">
+      <h1>Non-negotiables on the <em>road</em>.</h1>
+      <ul class="gear-list">
+        <li><span class="check"></span>Convoy formation — no breaking off</li>
+        <li><span class="check"></span>Hand signals followed by everyone</li>
+        <li><span class="check"></span>Sweep rider authority is final</li>
+        <li><span class="check"></span>Ride at the pace of the group</li>
+        <li><span class="check"></span>Mechanical issue = entire group stops</li>
+      </ul>
+      <div class="safety-callout">
+        <h4>THE THEME IS THE WITNESS</h4>
+        <p>How we ride <em>is</em> the message. A humble, disciplined, joyful convoy on the road is fellowship made visible — brothers in Christ, building a riding culture rooted in faith.</p>
+      </div>
+    </div>
+    <div class="footer-mark">RIDE FOR CHRIST</div>
+    <div class="slide-num">07</div>
+  </section>
+
+  <!-- ===== SLIDE 8: BRAND ===== -->
+  <section class="slide brand">
+    <div class="slide-tag">07 · Brand System</div>
+    <h1>The look, the words, the mark.</h1>
+    <div class="brand-grid">
+      <div>
+        <div class="brand-block">
+          <div class="label">PRIMARY TAGLINE</div>
+          <div class="tagline-display">Ride with Purpose.<br>Ride for Christ.</div>
+        </div>
+        <div class="brand-block">
+          <div class="label">ALTERNATES</div>
+          <div class="verse">Two Wheels. One Faith.<br>Brothers on the Road. Bound by Christ.<br>The Open Road Leads Home.</div>
+        </div>
+        <div class="brand-block">
+          <div class="label">ANCHOR VERSE</div>
+          <div class="verse">"As iron sharpens iron, so one man sharpens another."<br>— Proverbs 27:17</div>
+        </div>
+        <div class="brand-block">
+          <div class="label">PALETTE</div>
+          <div class="palette">
+            <div class="swatch" style="background:#1f1d1a;color:#f0eee6;">INK<br>#1F1D1A</div>
+            <div class="swatch" style="background:#cc785c;color:#1f1d1a;">CORAL<br>#CC785C</div>
+            <div class="swatch" style="background:#f0eee6;color:#1f1d1a;border:1px solid #d4cfc0;">CREAM<br>#F0EEE6</div>
+            <div class="swatch" style="background:#f4b860;color:#1f1d1a;">GOLD<br>#F4B860</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="label" style="font-size:10px;letter-spacing:2px;color:#cc785c;font-weight:700;margin-bottom:12px;">LOGO MARK</div>
+        <div class="logo-mark">
+          <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:300px;display:block;font-family:Inter,sans-serif;">
+            <defs>
+              <path id="rfcTopArc" d="M 50 160 A 110 110 0 0 1 270 160" fill="none"/>
+            </defs>
+
+            <!-- Decorative rings -->
+            <circle cx="160" cy="160" r="150" fill="none" stroke="#cc785c" stroke-width="1.5"/>
+            <circle cx="160" cy="160" r="138" fill="none" stroke="#cc785c" stroke-width="0.5" opacity="0.45"/>
+            <circle cx="160" cy="160" r="105" fill="none" stroke="#cc785c" stroke-width="0.5" stroke-dasharray="1 3" opacity="0.35"/>
+
+            <!-- Top arched text -->
+            <text font-size="14" font-weight="700" letter-spacing="6" fill="#cc785c">
+              <textPath href="#rfcTopArc" startOffset="50%" text-anchor="middle">RIDE FOR CHRIST</textPath>
+            </text>
+
+            <!-- Diamond ornaments at 9 and 3 o'clock -->
+            <g fill="#cc785c">
+              <polygon points="18,160 28,150 38,160 28,170"/>
+              <polygon points="282,160 292,150 302,160 292,170"/>
+            </g>
+
+            <!-- R + Cross + C monogram -->
+            <text x="105" y="200" font-family="Georgia,'Times New Roman',serif" font-size="100" fill="#f0eee6" font-weight="400" text-anchor="middle">R</text>
+            <text x="215" y="200" font-family="Georgia,'Times New Roman',serif" font-size="100" fill="#f0eee6" font-weight="400" text-anchor="middle">C</text>
+            <g fill="#cc785c">
+              <rect x="156" y="124" width="8" height="84"/>
+              <rect x="138" y="148" width="44" height="8"/>
+            </g>
+
+            <!-- Decorative dots flanking cross -->
+            <g fill="#cc785c" opacity="0.7">
+              <circle cx="135" cy="118" r="1.5"/>
+              <circle cx="185" cy="118" r="1.5"/>
+            </g>
+
+            <!-- Decorative divider -->
+            <line x1="113" y1="220" x2="138" y2="220" stroke="#cc785c" stroke-width="1"/>
+            <circle cx="160" cy="220" r="2" fill="#cc785c"/>
+            <line x1="182" y1="220" x2="207" y2="220" stroke="#cc785c" stroke-width="1"/>
+
+            <!-- Banner ribbon -->
+            <path d="M 50 235 L 65 228 L 255 228 L 270 235 L 255 250 L 65 250 Z" fill="#cc785c"/>
+            <text x="160" y="244" font-size="11" font-weight="700" letter-spacing="3" fill="#1f1d1a" text-anchor="middle">PROVERBS 27:17</text>
+
+            <!-- Bottom motto -->
+            <text x="160" y="280" font-size="9" font-weight="600" letter-spacing="3" fill="rgba(240,238,230,0.6)" text-anchor="middle">BROTHERHOOD · EST. 2026</text>
+          </svg>
+        </div>
+        <div style="margin-top:14px;font-size:11px;color:#6b6558;line-height:1.5;">
+          Heritage badge built around the R + C monogram with an integrated cross. Outer ring carries the wordmark, banner ribbon holds the verse, side diamonds and dotted inner ring add the patch detail. The R + C alone stands as a clean derivative for stickers, tank decals, and helmet vinyls.
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">RIDE FOR CHRIST</div>
+    <div class="slide-num">08</div>
+  </section>
+
+  <!-- ===== SLIDE 9: CAPTION ===== -->
+  <section class="slide caption-slide">
+    <div class="slide-tag">08 · Social Caption</div>
+    <h1>Ready-to-post copy.</h1>
+    <p class="sub">FACEBOOK · INSTAGRAM · GROUP CHATS</p>
+    <div class="caption-card">
+      <div class="heading">🏍️ RIDE FOR CHRIST — Breakfast Ride · May 1 (Labor Day)</div>
+      <p><strong>Ride with Purpose. Ride for Christ.</strong></p>
+      <p>This Labor Day, we're rolling out at first light to Kaybiang Tunnel — for the road, for the brotherhood, and for a quiet moment in the Word over breakfast. No judgment, no pressure. Just riders, real talk, and a God who meets us on the open road.</p>
+      <p>Whether you ride with Christ already or you're just curious what this "ride with purpose" thing is about — you're invited. Bring a brother. Underbones welcome — we're taking national roads, no tollway.</p>
+      <p>📍 Meetup: Caltex Southwoods<br>📅 May 1, 2026 · Labor Day<br>⏰ Call time 4:30 AM · Kickoff 5:00 AM<br>🍳 Breakfast & fellowship at the viewpoint<br>🏠 Back home by 10:00 AM</p>
+      <div class="verse">"As iron sharpens iron, so one man sharpens another." — Proverbs 27:17</div>
+      <p>👉 RSVP at the link in comments. Tag a riding buddy.</p>
+      <div class="hashtags">#RideForChrist  #RideWithPurpose  #BrothersInChrist</div>
+    </div>
+    <div class="footer-mark">RIDE FOR CHRIST</div>
+    <div class="slide-num">09</div>
+  </section>
+
+  <!-- ===== SLIDE 10: CTA ===== -->
+  <section class="slide cta">
+    <div class="small-mark">FINAL · RIDE FOR CHRIST</div>
+    <div class="cta-main">
+      <h1>Bring a<br>brother. <em>Ride.</em></h1>
+      <p>This event lives or dies on the riders we invite. Believers — pick one person you've been praying for, and personally invite them to this ride. That's the assignment.</p>
+    </div>
+    <div class="cta-bottom">
+      <div class="cta-info">
+        <div class="label">RSVP LINK</div>
+        <div class="value">[ Paste link here ]</div>
+      </div>
+      <div class="cta-info">
+        <div class="label">RIDE DATE</div>
+        <div class="value">May 1, 2026</div>
+      </div>
+      <div class="cta-info">
+        <div class="label">GROUP CHAT</div>
+        <div class="value">[ Link ]</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Presentation chrome (hidden in print) -->
+<div class="progress-bar" id="progressBar"></div>
+<div class="scroll-hint">SCROLL · ARROW KEYS · SPACEBAR</div>
+<div class="slide-counter">
+  <span class="current">01</span><span class="sep">/</span><span class="total">10</span>
+</div>
+<div class="slide-nav">
+  <button id="prevSlide" aria-label="Previous slide" title="Previous (↑)">↑</button>
+  <button id="nextSlide" aria-label="Next slide" title="Next (↓)">↓</button>
+</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.querySelector('.slide-counter .current');
+  const total = document.querySelector('.slide-counter .total');
+  const prevBtn = document.getElementById('prevSlide');
+  const nextBtn = document.getElementById('nextSlide');
+  const progress = document.getElementById('progressBar');
+  let currentIdx = 0;
+
+  total.textContent = String(slides.length).padStart(2, '0');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function update() {
+    counter.textContent = pad(currentIdx + 1);
+    prevBtn.disabled = currentIdx === 0;
+    nextBtn.disabled = currentIdx === slides.length - 1;
+    const pct = slides.length > 1 ? (currentIdx / (slides.length - 1)) * 100 : 100;
+    progress.style.width = pct + '%';
+  }
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= slides.length) return;
+    currentIdx = idx;
+    slides[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    update();
+  }
+
+  // Track which slide is in view as the user scrolls
+  const observer = new IntersectionObserver((entries) => {
+    let bestEntry = null;
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
+          bestEntry = entry;
+        }
+      }
+    });
+    if (bestEntry && bestEntry.intersectionRatio > 0.5) {
+      const idx = Array.from(slides).indexOf(bestEntry.target);
+      if (idx >= 0 && idx !== currentIdx) {
+        currentIdx = idx;
+        update();
+      }
+    }
+  }, { threshold: [0.3, 0.5, 0.75, 1.0] });
+
+  slides.forEach(s => observer.observe(s));
+
+  prevBtn.addEventListener('click', () => goTo(currentIdx - 1));
+  nextBtn.addEventListener('click', () => goTo(currentIdx + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'j') {
+      e.preventDefault();
+      goTo(currentIdx + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'k') {
+      e.preventDefault();
+      goTo(currentIdx - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      goTo(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      goTo(slides.length - 1);
+    }
+  });
+
+  update();
+})();
+</script>
+
+</body>
+</html>
